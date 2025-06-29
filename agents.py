@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class BaseAgent:
-    """Base class for all agents with common functionality"""
     
     def __init__(self, resume_path='./old_resume.md'):
         self.search_tool = SerperDevTool()
@@ -133,7 +132,6 @@ class AgentFactory:
         self.resume_path = resume_path
     
     def create_all_agents(self):
-        """Create and return all agents"""
         researcher = TechJobResearcher(self.resume_path)
         profiler = PersonalProfiler(self.resume_path)
         strategist = ResumeStrategist(self.resume_path)

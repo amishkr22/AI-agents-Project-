@@ -11,14 +11,13 @@ from file_conversion import FileConverter
 converter_instance  = FileConverter()
 converter_instance.pdf_to_md(r"C:\Users\amish\Downloads\RESUME.pdf")
 
-def create_crew_method1():
+def create_crew_method():
     """Create crew using individual agent classes"""
     researcher = TechJobResearcher('./old_resume.md')
     profiler = PersonalProfiler('./old_resume.md')
     strategist = ResumeStrategist('./old_resume.md')
     interviewer = InterviewPreparer('./old_resume.md')
     
-    # Create tasks
     research_task = Task(
     description=(
         "Analyze the job posting URL provided ({job_posting_url}) "
@@ -86,9 +85,8 @@ def create_crew_method1():
     output_file="interview_materials.md",
     context=[research_task, profile_task, resume_strategy_task],
     agent=interviewer.get_agent()
-)
+    )
     
-    # Create crew
     crew = Crew(
         agents=[
             researcher.get_agent(),
@@ -104,10 +102,8 @@ def create_crew_method1():
 
 
 if __name__ == "__main__":
-    # Choose your preferred method
-    crew = create_crew_method1()
+    crew = create_crew_method()
     
-    # Add your job posting URL or content here
     job_application_inputs = {
     'job_posting_url': 'https://search.jobs.barclays/job/-/-/13015/81911683408?src=JB-12860',
     'github_url': 'https://github.com/amishkr22',
