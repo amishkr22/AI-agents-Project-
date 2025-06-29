@@ -1,0 +1,5 @@
+.env
+*/__pycache__
+interview_materials.md
+new_resume.md
+old_resume.md
