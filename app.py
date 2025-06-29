@@ -1,28 +1,21 @@
-# app.py
-
 import streamlit as st
 import os
-from main import create_crew_method1
+from main import create_crew_method
 from file_conversion import FileConverter
 
-# Streamlit UI
 st.title("Smart Job Application Optimizer 🚀")
 
-# 1. Upload PDF
 uploaded_file = st.file_uploader("Upload your Resume PDF", type=['pdf'])
 
 if uploaded_file is not None:
-    # Save uploaded file temporarily
     pdf_path = os.path.join("uploaded_resume.pdf")
     with open(pdf_path, "wb") as f:
         f.write(uploaded_file.read())
 
-    # Convert to Markdown
     converter = FileConverter()
     converter.pdf_to_md(pdf_path)
     st.success("PDF converted to Markdown ✅")
 
-    # 2. Collect other inputs
     job_posting_url = st.text_input("Job Posting URL")
     github_url = st.text_input("GitHub URL")
     personal_writeup = st.text_area("Personal Write-up")
@@ -31,8 +24,7 @@ if uploaded_file is not None:
         if not job_posting_url or not github_url or not personal_writeup:
             st.error("Please fill in all the fields.")
         else:
-            # Kick off the pipeline
-            crew = create_crew_method1()
+            crew = create_crew_method()
             inputs = {
                 'job_posting_url': job_posting_url,
                 'github_url': github_url,
@@ -43,7 +35,6 @@ if uploaded_file is not None:
             st.write("✅ CrewAI Pipeline Completed!")
             st.json(result)
 
-            # Optionally show or let user download the files
             if os.path.exists("new_resume.md"):
                 with open("new_resume.md", "r") as f:
                     st.download_button("Download New Resume", f, file_name="new_resume.md")

@@ -3,8 +3,7 @@ from agents import (
     TechJobResearcher, 
     PersonalProfiler, 
     ResumeStrategist, 
-    InterviewPreparer, 
-    AgentFactory
+    InterviewPreparer
 )
 from file_conversion import FileConverter
 
